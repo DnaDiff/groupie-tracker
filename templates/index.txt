@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Horny tracker</title>
+  </head>
+  <body>
+    <div class="Artist">
+      <p>artist: {{ artist }}</p>
+      <p>
+        location:
+        <a
+          href="https://www.google.com/maps/search/?api=1&query={{ location }}"
+        >
+          {{ location }}
+        </a>
+      </p>
+      <p>dates: {{ dates }}</p>
+      <p>relations with: <a href="{{ relations }}">{{ relations }}</a></p>
+    </div>
+  </body>
+</html>
