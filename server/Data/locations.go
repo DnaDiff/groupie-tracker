@@ -8,11 +8,8 @@ type Locations struct {
 	ArtistId  int    `json:"artistId"`
 }
 
-
-
 func getLocations() {
-	data := GetData("https://groupietrackers.herokuapp.com/api/locations")
-	locations := []Location{}
-	
+	// data := GetData("https://groupietrackers.herokuapp.com/api/locations")
+	// locations := []Location{}
 
 }
