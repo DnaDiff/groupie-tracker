@@ -1,4 +1,4 @@
-package getCocc
+package get
 
 import (
 	"io/ioutil"
