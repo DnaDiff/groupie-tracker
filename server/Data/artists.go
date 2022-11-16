@@ -1,7 +1,8 @@
-package getCocc
+package get
 
 import (
 	"encoding/json"
+	"log"
 )
 
 type Artist struct {
@@ -18,9 +19,14 @@ type Artist struct {
 
 // getData.GetArtists loads in all data from the groupietracker apis'
 // first page
-func Artists() []Artist {
+func GetArtists() []Artist {
 	data := GetData("https://groupietrackers.herokuapp.com/api/artists")
 	artists := []Artist{}
-	json.Unmarshal(data, &artists)
+	// handle error if data is nil
+	err := json.Unmarshal(data, &artists)
+	if err != nil {
+		log.Panic("Problem in GetArtists function when unmarshalling data: ", err)
+		return []Artist{}
+	}
 	return artists
 }
