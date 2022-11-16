@@ -2,7 +2,6 @@ package server
 
 import (
 	"net/http"
-	"text/template"
 )
 
 type Error struct {
@@ -20,7 +19,7 @@ func error500(w http.ResponseWriter, r *http.Request) {
 }
 
 func errorHandler(w http.ResponseWriter, r *http.Request, d *Error) {
-	tmpl = template.Must(template.ParseFiles("templates/error.html"))
+	// tmpl = template.Must(template.ParseFiles("templates/error.html"))
 	w.WriteHeader(d.Code)
-	tmpl.ExecuteTemplate(w, "error.html", d)
+	// tmpl.ExecuteTemplate(w, "error.html", d)
 }
