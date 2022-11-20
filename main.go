@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	get "groupie-tracker/server/Data"
 )
 
