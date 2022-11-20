@@ -2,6 +2,7 @@ package get
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 )
 
@@ -12,21 +13,32 @@ type Artist struct {
 	Members      []string `json:"members"`
 	CreationDate int      `json:"creationDate"`
 	FirstAlbum   string   `json:"firstAlbum"`
-	Locations    string   `json:"locations"`
-	ConcertDates string   `json:"concertDates"`
+	Locations    []string   `json:"locations"`
+	ConcertDates []string   `json:"concertDates"`
 	Relations    string   `json:"relations"`
 }
 
-// getData.GetArtists loads in all data from the groupietracker apis'
-// first page
+
+
 func GetArtists() []Artist {
 	data := GetData("https://groupietrackers.herokuapp.com/api/artists")
 	artists := []Artist{}
-	// handle error if data is nil
+	
 	err := json.Unmarshal(data, &artists)
 	if err != nil {
 		log.Panic("Problem in GetArtists function when unmarshalling data: ", err)
 		return []Artist{}
 	}
+	
+	fmt.Println(artists[0].Id)
+	fmt.Println(artists[0].Image)
+	fmt.Println(artists[0].Name)
+	fmt.Println(artists[0].Members)
+	fmt.Println(artists[0].CreationDate)
+	fmt.Println(artists[0].FirstAlbum)
+	fmt.Println(artists[0].Locations)
+	fmt.Println(artists[0].ConcertDates)
+	fmt.Println(artists[0].Relations)
+
 	return artists
 }
