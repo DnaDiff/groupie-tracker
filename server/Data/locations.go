@@ -1,15 +1,32 @@
 package get
 
+import (
+	"encoding/json"
+	"fmt"
+	"log"
+)
+
 type Locations struct {
-	Id        int    `json:"id"`
-	Location  string `json:"location"`
-	StartDate string `json:"startDate"`
-	EndDate   string `json:"endDate"`
-	ArtistId  int    `json:"artistId"`
+	Index []struct {
+		ID        int      `json:"id"`
+		Locations []string `json:"locations"`
+		Dates     string   `json:"dates"`
+	} `json:"index"`
 }
 
-func getLocations() {
-	// data := GetData("https://groupietrackers.herokuapp.com/api/locations")
-	// locations := []Location{}
+func GetLocations() Locations {
 
+	data := GetData("https://groupietrackers.herokuapp.com/api/locations")
+	locations := Locations{}
+	err := json.Unmarshal(data, &locations)
+	if err != nil {
+		log.Panic("Problem in GetLocations function when unmarshalling data: ", err)
+		return Locations{}
+	}
+
+	fmt.Println(locations.Index[0].ID)
+	fmt.Println(locations.Index[0].Locations)
+	fmt.Println(locations.Index[0].Dates)
+
+	return locations
 }
