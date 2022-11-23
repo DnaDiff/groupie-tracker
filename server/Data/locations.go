@@ -2,7 +2,6 @@ package get
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 )
 
@@ -23,10 +22,5 @@ func GetLocations() Locations {
 		log.Panic("Problem in GetLocations function when unmarshalling data: ", err)
 		return Locations{}
 	}
-
-	fmt.Println(locations.Index[0].ID)
-	fmt.Println(locations.Index[0].Locations)
-	fmt.Println(locations.Index[0].Dates)
-
 	return locations
 }
