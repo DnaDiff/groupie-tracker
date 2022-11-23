@@ -2,7 +2,6 @@ package get
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 )
 
@@ -14,7 +13,7 @@ type Dates struct {
 }
 
 func GetDates() Dates {
-	
+
 	data := GetData("https://groupietrackers.herokuapp.com/api/dates")
 	dates := Dates{}
 	err := json.Unmarshal(data, &dates)
@@ -22,9 +21,5 @@ func GetDates() Dates {
 		log.Panic("Problem in GetDates function when unmarshalling data: ", err)
 		return Dates{}
 	}
-	
-	fmt.Println(dates.Index[0].ID)
-	fmt.Println(dates.Index[0].Dates)
-
 	return dates
 }
