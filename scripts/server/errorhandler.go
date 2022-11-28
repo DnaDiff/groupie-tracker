@@ -12,7 +12,6 @@ type Error struct {
 
 var tmpl *template.Template
 
-// handles 500 errors
 func error500(w http.ResponseWriter, r *http.Request) {
 	d := Error{
 		Code:    http.StatusInternalServerError,
