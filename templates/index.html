@@ -16,6 +16,7 @@
   <body>
     <h1>Groupie Tracker</h1>
     {{range $i, $e := .}}
+    <!-- <div class="all"> -->
     <div class="artist">
       <h2 class="name">{{$e.Name}}</h2>
       <img
@@ -24,6 +25,7 @@
         class="image"
       />
     </div>
+
     {{end}}
   </body>
 </html>
