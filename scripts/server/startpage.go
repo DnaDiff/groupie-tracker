@@ -11,10 +11,11 @@ func StartPage(w http.ResponseWriter, r *http.Request) {
 	Artists := get.Epicmerge()
 
 	switch {
-	case r.Method != "GET":
-		error404(w, r)
-	case r.URL.Path != "/":
-		error404(w, r)
+	// case r.Method != "GET":
+	// 	error404(w, r)
+	// case r.URL.Path != "/":
+	// 	error404(w, r)
+	// case r.URL.Path != "/artists":
 	default:
 
 		tmpl, err := template.ParseFiles("templates/index.html")
