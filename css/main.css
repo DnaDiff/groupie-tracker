@@ -25,6 +25,15 @@
   border-radius: 25%;
 }
 
+.members {
+  display: inline-block;
+  /* place it at the top */
+  vertical-align: top;
+}
+.all {
+  display: inline-block;
+}
+
 body {
   text-align: center;
   color: aliceblue;
