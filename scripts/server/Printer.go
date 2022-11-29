@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"text/template"
 
-	get "groupie-tracker/scripts/Data"
+	get "groupie-tracker/scripts/data"
 )
 
 // type Everyone struct {
