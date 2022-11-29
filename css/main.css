@@ -17,11 +17,11 @@
 }
 .image:hover {
   border: 2px solid #fff;
-  /* -moz-box-shadow: 0px 6px 5px #ccc;
-  -webkit-box-shadow: 0px 6px 5px #ccc; */
+  -moz-box-shadow: 0px 6px 5px #cb22c3;
+  -webkit-box-shadow: 0px 6px 5px #cb22c3;
   box-shadow: 2px 6px 5px #cb22c3;
-  /* -moz-border-radius: 25%;
-  -webkit-border-radius: 25%; */
+  -moz-border-radius: 25%;
+  -webkit-border-radius: 25%;
   border-radius: 25%;
 }
 
