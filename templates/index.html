@@ -4,12 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Artist</title>
+    <title>Groupie Tracker</title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <!-- {{range .nice}} -->
-    <!-- <img src="{{.image}}" alt="Picture of the band logo" /> -->
-    <p>hello</p>
-    <!-- <h1>{{.Everyone.Name}}</h1> -->
+    <h1>Groupie Tracker</h1>
+    {{range $i, $e := .}}
+    <div class="artist">
+      <h2 class="name">{{$e.Name}}</h2>
+      <img
+        src="{{$e.Image}}"
+        alt="picture of the artists album"
+        class="image"
+      />
+    </div>
+    {{end}}
   </body>
 </html>
