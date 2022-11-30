@@ -1,0 +1,14 @@
+body {
+  text-align: center;
+  color: aliceblue;
+  background-color: #000;
+  opacity: 0.8;
+  background-image: radial-gradient(
+      #cb22c3 1.2000000000000002px,
+      transparent 1.2000000000000002px
+    ),
+    radial-gradient(#cb22c3 1.2000000000000002px, #000 1.2000000000000002px);
+  background-size: 48px 48px;
+  background-position: 0 0, 24px 24px;
+  font-family: "Quicksand", sans-serif;
+}
