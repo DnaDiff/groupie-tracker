@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-func CheckNumber(URL string) bool {
+func isNumber(URL string) bool {
 	nbr, err := strconv.Atoi(URL)
 	if err != nil {
 		return false
@@ -18,7 +18,7 @@ func CheckNumber(URL string) bool {
 	return false
 }
 
-func Atoi(s string) int {
+func atoi(s string) int {
 	atoi, _ := strconv.Atoi(s)
 	return atoi
 }
@@ -29,13 +29,13 @@ func StartPage(w http.ResponseWriter, r *http.Request) {
 	// fmt.Println(Artists[Atoi(r.URL.Path[1:])].Id)
 
 	switch {
-	case CheckNumber(r.URL.Path[1:]):
+	case isNumber(r.URL.Path[1:]):
 		tmpl, err := template.ParseFiles("templates/artists.html")
 		if err != nil {
 			httpError(w, r, http.StatusInternalServerError)
 			return
 		}
-		err = tmpl.ExecuteTemplate(w, "artists.html", Artists[Atoi(r.URL.Path[1:])-1])
+		err = tmpl.ExecuteTemplate(w, "artists.html", Artists[atoi(r.URL.Path[1:])-1])
 		if err != nil {
 			httpError(w, r, http.StatusInternalServerError)
 			return
