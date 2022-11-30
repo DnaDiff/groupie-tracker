@@ -19,8 +19,8 @@ func CheckNumber(URL string) bool {
 }
 
 func Atoi(s string) int {
-	nice, _ := strconv.Atoi(s)
-	return nice
+	atoi, _ := strconv.Atoi(s)
+	return atoi
 }
 
 func StartPage(w http.ResponseWriter, r *http.Request) {
