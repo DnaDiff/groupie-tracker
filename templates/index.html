@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Groupie Tracker</title>
-    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,17 +15,18 @@
   </head>
   <body>
     <h1>Groupie Tracker</h1>
+
     {{range $i, $e := .}}
-    <!-- <div class="all"> -->
     <div class="artist">
       <h2 class="name">{{$e.Name}}</h2>
-      <img
-        src="{{$e.Image}}"
-        alt="picture of the artists album"
-        class="image"
-      />
+      <a href="{{$e.Id}}">
+        <img
+          src="{{$e.Image}}"
+          alt="picture of the artists album"
+          class="image"
+        />
+      </a>
     </div>
-
     {{end}}
   </body>
 </html>
