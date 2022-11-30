@@ -5,9 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Artist</title>
+    <link rel="stylesheet" href="/css/artists.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <img src="{{.image}}" alt="Picture of the band logo">
+    <a href="/">
+      <button>Back to main page</button>
+    </a>
     <h1>{{.Name}}</h1>
+    <img src="{{.Image}}" alt="nice" />
+
+    <h2>Creation date: {{.CreationDate}}</h2>
+    <h2>First album : {{.FirstAlbum}}</h2>
+    <h2>Concert Locations</h2>
+    {{range $i, $e := .Locations}}
+    <h3>{{.}}</h3>
+    {{end}}
+    <h2>Dates</h2>
+    {{range $i, $e := .ConcertDates}}
+    <h3>{{.}}</h3>
+    {{end}}
   </body>
 </html>
