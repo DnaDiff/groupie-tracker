@@ -1,7 +1,7 @@
 package server
 
 import (
-	get "groupie-tracker/scripts/Data"
+	data "groupie-tracker/scripts/data"
 	"html/template"
 	"net/http"
 	"strconv"
@@ -25,7 +25,7 @@ func Atoi(s string) int {
 
 func StartPage(w http.ResponseWriter, r *http.Request) {
 
-	Artists := get.Epicmerge()
+	Artists := data.Compile()
 	// fmt.Println(Artists[Atoi(r.URL.Path[1:])].Id)
 
 	switch {

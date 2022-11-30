@@ -1,4 +1,4 @@
-package get
+package data
 
 import (
 	"io/ioutil"
