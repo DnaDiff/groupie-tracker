@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-var Port = "80"
+var Port = "8080"
 
 func StartServer() {
 	http.Handle("/css/", http.StripPrefix("/css/", http.FileServer(http.Dir("css"))))
