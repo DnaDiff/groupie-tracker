@@ -12,40 +12,16 @@ type Error struct {
 
 var tmpl *template.Template
 
-func error500(w http.ResponseWriter, r *http.Request) {
-	d := Error{
-		Code:    http.StatusInternalServerError,
-		Message: "Internal Server Error",
+func httpError(w http.ResponseWriter, r *http.Request, code int) {
+	err := Error{
+		Code:	code,
+		Message: http.StatusText(code),
 	}
-	errorHandler(w, r, &d)
+	errorHandler(w, r, &err)
 }
 
-func error404(w http.ResponseWriter, r *http.Request) {
-	d := Error{
-		Code:    http.StatusNotFound,
-		Message: "Page not found",
-	}
-	errorHandler(w, r, &d)
-}
-
-func error405(w http.ResponseWriter, r *http.Request) {
-	d := Error{
-		Code:    http.StatusMethodNotAllowed,
-		Message: "Method not allowed",
-	}
-	errorHandler(w, r, &d)
-}
-
-func error400(w http.ResponseWriter, r *http.Request) {
-	d := Error{
-		Code:    http.StatusBadRequest,
-		Message: "Bad request",
-	}
-	errorHandler(w, r, &d)
-}
-
-func errorHandler(w http.ResponseWriter, r *http.Request, d *Error) {
+func errorHandler(w http.ResponseWriter, r *http.Request, err *Error) {
 	tmpl = template.Must(template.ParseFiles("templates/error.html"))
-	w.WriteHeader(d.Code)
-	tmpl.ExecuteTemplate(w, "error.html", d)
+	w.WriteHeader(err.Code)
+	tmpl.ExecuteTemplate(w, "error.html", err)
 }

@@ -32,27 +32,27 @@ func StartPage(w http.ResponseWriter, r *http.Request) {
 	case CheckNumber(r.URL.Path[1:]):
 		tmpl, err := template.ParseFiles("templates/artists.html")
 		if err != nil {
-			error500(w, r)
+			httpError(w, r, http.StatusInternalServerError)
 			return
 		}
-		err2 := tmpl.ExecuteTemplate(w, "artists.html", Artists[Atoi(r.URL.Path[1:])-1])
-		if err2 != nil {
-			error500(w, r)
+		err = tmpl.ExecuteTemplate(w, "artists.html", Artists[Atoi(r.URL.Path[1:])-1])
+		if err != nil {
+			httpError(w, r, http.StatusInternalServerError)
 			return
 		}
 	case r.URL.Path == "/":
 		tmpl, err := template.ParseFiles("templates/index.html")
 		if err != nil {
-			error500(w, r)
+			httpError(w, r, http.StatusInternalServerError)
 			return
 		}
-		err2 := tmpl.ExecuteTemplate(w, "index.html", Artists)
-		if err2 != nil {
-			error500(w, r)
+		err = tmpl.ExecuteTemplate(w, "index.html", Artists)
+		if err != nil {
+			httpError(w, r, http.StatusInternalServerError)
 			return
 		}
 	default:
-		error404(w, r)
+		httpError(w, r, http.StatusNotFound)
 		return
 	}
 
