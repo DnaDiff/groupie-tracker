@@ -23,4 +23,3 @@ func GetDates() Dates {
 	}
 	return dates
 }
-
