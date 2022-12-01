@@ -1,6 +1,6 @@
 package data
 
-type Artists struct {
+type Artist struct {
 	Id           int
 	Image        string
 	Name         string
@@ -12,23 +12,23 @@ type Artists struct {
 	Relations    string
 }
 
-func Compile() []Artists {
-	rawArtists := []Artists{}
-	artists := GetArtists()
-	dates := GetDates()
-	locations := GetLocations()
-	for i := 0; i < len(artists); i++ {
-		rawArtists = append(rawArtists, Artists{
-			Id:           artists[i].Id,
-			Image:        artists[i].Image,
-			Name:         artists[i].Name,
-			Members:      artists[i].Members,
-			CreationDate: artists[i].CreationDate,
-			FirstAlbum:   artists[i].FirstAlbum,
+func Compile() []Artist {
+	allArtists := []Artist{}
+	rawArtists := getArtists()
+	dates := getDates()
+	locations := getLocations()
+	for i := 0; i < len(rawArtists); i++ {
+		allArtists = append(allArtists, Artist{
+			Id:           rawArtists[i].Id,
+			Image:        rawArtists[i].Image,
+			Name:         rawArtists[i].Name,
+			Members:      rawArtists[i].Members,
+			CreationDate: rawArtists[i].CreationDate,
+			FirstAlbum:   rawArtists[i].FirstAlbum,
 			Locations:    locations.Index[i].Locations,
 			ConcertDates: dates.Index[i].Dates,
-			Relations:    artists[i].Relations,
+			Relations:    rawArtists[i].Relations,
 		})
 	}
-	return rawArtists
+	return allArtists
 }
