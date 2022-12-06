@@ -19,7 +19,7 @@
     {{range $i, $e := .}}
     <div class="artist">
       <h2 class="name">{{$e.Name}}</h2>
-      <a href="{{$e.Id}}">
+      <a href="artist/{{$e.Id}}">
         <img
           src="{{$e.Image}}"
           alt="picture of the artists album"
