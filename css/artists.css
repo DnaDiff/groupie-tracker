@@ -18,3 +18,36 @@ body {
   background-position: 0 0, 2.4rem 2.4rem;
   
 }
+
+.profile {
+  width: 110rem;
+  height: 60rem;
+  background-color: rgb(192, 184, 202);
+  border-radius: 3rem;
+  border: 0.5rem solid #ca98c9;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 5rem;
+}
+
+.profile__name {
+  opacity: 1;
+  font-size: 6rem;
+  font-weight: 700;
+  text-shadow: 0.2rem 0.2rem 0.2rem #cb22c3; 
+  margin-top: 2rem;
+}
+
+.image {
+  position: absolute;
+  left: 2.5rem;
+  top: 2.5rem;
+  
+  border: 0.2rem solid #fff;
+  -moz-box-shadow: 0rem 0.6rem 0.5rem #cb22c3;
+  -webkit-box-shadow: 0rem 0.6rem 0.5rem #cb22c3;
+  box-shadow: 0.2rem 0.6rem 0.5rem #cb22c3;
+  -moz-border-radius: 25%;
+  -webkit-border-radius: 25%;
+  border-radius: 25%;
+}
