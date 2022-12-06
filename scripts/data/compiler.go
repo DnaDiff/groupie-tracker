@@ -9,14 +9,16 @@ type Artist struct {
 	FirstAlbum   string
 	Locations    []string
 	ConcertDates []string
-	Relations    string
+	Relations    map[string][]string
 }
 
 func Compile() []Artist {
 	allArtists := []Artist{}
 	rawArtists := getArtists()
-	dates := getDates()
 	locations := getLocations()
+	dates := getDates()
+	relations := getRelations()
+
 	for i := 0; i < len(rawArtists); i++ {
 		allArtists = append(allArtists, Artist{
 			Id:           rawArtists[i].Id,
@@ -27,7 +29,7 @@ func Compile() []Artist {
 			FirstAlbum:   rawArtists[i].FirstAlbum,
 			Locations:    locations.Index[i].Locations,
 			ConcertDates: dates.Index[i].Dates,
-			Relations:    rawArtists[i].Relations,
+			Relations:    relations.Index[i].DatesLocations,
 		})
 	}
 	return allArtists

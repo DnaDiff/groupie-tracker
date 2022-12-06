@@ -1,5 +1,11 @@
 package data
 
+import (
+	"encoding/json"
+	"groupie-tracker/scripts/tools"
+	"strings"
+)
+
 // Artist type
 type rawArtist struct {
 	Id           int      `json:"id"`
@@ -49,14 +55,38 @@ func getLocations() rawLocations {
 }
 
 // Relation type
-type rawRelation struct {
+type rawRelations struct {
 	Index []struct {
 		DatesLocations map[string][]string `json:"datesLocations"`
 	} `json:"index"`
 }
 
-func getRelations() rawRelation {
-	relations := rawRelation{}
+func getRelations() rawRelations {
+	// Initalize to store the raw data
+	relations := rawRelations{}
 	getData("https://groupietrackers.herokuapp.com/api/relation", &relations)
+	// Convert the names to the correct format
+	// EX: "los_angeles-usa" -> "Los Angeles, USA"
+	marshalledRelations, _ := json.Marshal(relations.Index)
+	marshalledRelations = []byte(
+		tools.Title(
+			strings.ReplaceAll(
+				strings.ReplaceAll(
+					string(marshalledRelations), "_", " "), "-", ", ")))
+	// Reset to avoid duplicates when unmarshalling
+	relations = rawRelations{}
+	json.Unmarshal(marshalledRelations, &relations.Index)
+
+	// Convert the dates to the correct format
+	for i := 0; i < len(relations.Index); i++ {
+		for location, dates := range relations.Index[i].DatesLocations {
+			// Convert the dates to the correct format
+			// EX: "2019-01-01" -> "January 1, 2019"
+			for dateIndex, date := range dates {
+				relations.Index[i].DatesLocations[location][dateIndex] = tools.Date(date)
+			}
+		}
+	}
+
 	return relations
 }
