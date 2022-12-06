@@ -1,10 +1,12 @@
 package server
 
 import (
-	data "groupie-tracker/scripts/data"
+	"groupie-tracker/scripts/data"
+	"groupie-tracker/scripts/tools"
 	"html/template"
 	"net/http"
 	"strconv"
+	"strings"
 )
 
 func isNumber(URL string) bool {
@@ -18,24 +20,18 @@ func isNumber(URL string) bool {
 	return false
 }
 
-func atoi(s string) int {
-	atoi, _ := strconv.Atoi(s)
-	return atoi
-}
-
 func StartPage(w http.ResponseWriter, r *http.Request) {
 
 	Artists := data.Compile()
-	// fmt.Println(Artists[Atoi(r.URL.Path[1:])].Id)
 
 	switch {
-	case isNumber(r.URL.Path[1:]):
+	case strings.HasPrefix(r.URL.Path, "/artist/") && isNumber(r.URL.Path[8:]):
 		tmpl, err := template.ParseFiles("templates/artists.html")
 		if err != nil {
 			httpError(w, r, http.StatusInternalServerError)
 			return
 		}
-		err = tmpl.ExecuteTemplate(w, "artists.html", Artists[atoi(r.URL.Path[1:])-1])
+		err = tmpl.ExecuteTemplate(w, "artists.html", Artists[tools.Atoi(r.URL.Path[8:])-1])
 		if err != nil {
 			httpError(w, r, http.StatusInternalServerError)
 			return
@@ -55,51 +51,4 @@ func StartPage(w http.ResponseWriter, r *http.Request) {
 		httpError(w, r, http.StatusNotFound)
 		return
 	}
-
-	// if CheckNumber(r.URL.Path[1:]) {
-	// 	tmpl, err := template.ParseFiles("templates/artists.html")
-	// 	if err != nil {
-	// 		error500(w, r)
-	// 		return
-	// 	}
-	// 	err2 := tmpl.ExecuteTemplate(w, "artists.html", Artists[Atoi(r.URL.Path[1:])-1])
-	// 	if err2 != nil {
-	// 		error500(w, r)
-	// 		return
-	// 	}
-	// } else if r.URL.Path == "/" {
-	// 	tmpl, err := template.ParseFiles("templates/index.html")
-	// 	if err != nil {
-	// 		error500(w, r)
-	// 		return
-	// 	}
-	// 	err2 := tmpl.ExecuteTemplate(w, "index.html", Artists)
-	// 	if err2 != nil {
-	// 		error500(w, r)
-	// 		return
-	// 	} else if r.URL.Path != "/" {
-	// 		error404(w, r)
-	// 	}
-	// }
-
-	// switch {
-	// // case r.Method != "GET":
-	// // 	error404(w, r)
-	// // case r.URL.Path != "/":
-	// // 	error404(w, r)
-	// // case r.URL.Path != "/artists":
-	// default:
-
-	// 	tmpl, err := template.ParseFiles("templates/index.html")
-	// 	if err != nil {
-	// 		error500(w, r)
-	// 		return
-	// 	}
-	// 	err2 := tmpl.ExecuteTemplate(w, "index.html", Artists)
-	// 	if err2 != nil {
-	// 		error500(w, r)
-	// 		return
-	// 	}
-
-	// }
 }
