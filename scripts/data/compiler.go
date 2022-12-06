@@ -1,5 +1,7 @@
 package data
 
+import "groupie-tracker/scripts/tools"
+
 type Artist struct {
 	Id           int
 	Image        string
@@ -26,7 +28,7 @@ func Compile() []Artist {
 			Name:         rawArtists[i].Name,
 			Members:      rawArtists[i].Members,
 			CreationDate: rawArtists[i].CreationDate,
-			FirstAlbum:   rawArtists[i].FirstAlbum,
+			FirstAlbum:   tools.Date(rawArtists[i].FirstAlbum),
 			Locations:    locations.Index[i].Locations,
 			ConcertDates: dates.Index[i].Dates,
 			Relations:    relations.Index[i].DatesLocations,
