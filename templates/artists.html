@@ -18,17 +18,15 @@
       <button>Back to main page</button>
     </a>
     <h1>{{.Name}}</h1>
-    <img src="{{.Image}}" alt="nice" />
+    <img src="{{.Image}}" alt="Artist Image" />
 
     <h2>Creation date: {{.CreationDate}}</h2>
-    <h2>First album : {{.FirstAlbum}}</h2>
+    <h2>First album: {{.FirstAlbum}}</h2>
     <h2>Concert Locations</h2>
-    {{range $i, $e := .Locations}}
-    <h3>{{.}}</h3>
-    {{end}}
-    <h2>Dates</h2>
-    {{range $i, $e := .ConcertDates}}
-    <h3>{{.}}</h3>
+    {{range $i, $e := .Relations}}
+    <h3>{{$i}}</h3>
+    <!--Remove brackets from element-->
+    <p>{{index $e 0}}</p>
     {{end}}
   </body>
 </html>
