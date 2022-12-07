@@ -16,21 +16,29 @@
   <body>
     <div class="container">
       <div class="profile">
-        <header class="profile__header">
-          <h1 class="profile__name">{{.Name}}</h1>
-          <span>EST. {{.CreationDate}}</span>
-        </header>
-        <img src="{{.Image}}" alt="Artist Image" class="image" />
-        <h2>First album: {{.FirstAlbum}}</h2>
-        <h2>Concert Locations</h2>
-        {{range $i, $e := .Relations}}
-        <h3>{{$i}}</h3>
-        <!--Removes brackets from element-->
-        <p>{{index $e 0}}</p>
-        {{end}}
-        <a href="/">
-          <button>Back to main page</button>
-        </a>
+        <h1 class="profile__name">{{.Name}}</h1>
+        <div class="profile__info">
+          <img src="{{.Image}}" alt="Artist Image" class="image" />
+          <h2 class="profile__info__date">EST. {{.CreationDate}}</h2>
+          <h2>First album: {{.FirstAlbum}}</h2>
+          <h2>Members</h2>
+          {{range .Members}}
+          <p>{{.}}</p>
+          {{end}}
+        </div>
+        <div class="concerts">
+          <h2>Concert Locations</h2>
+          {{range $i, $e := .Relations}}
+          <h3>{{$i}}</h3>
+          <!--Removes brackets from element-->
+          <p>{{index $e 0}}</p>
+          {{end}}
+        </div>
+        <div class="button">
+          <a href="/">
+            <button>Back</button>
+          </a>
+        </div>
       </div>
     </div>
   </body>
