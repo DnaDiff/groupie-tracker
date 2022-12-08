@@ -21,8 +21,11 @@ func isNumber(URL string) bool {
 }
 
 func StartPage(w http.ResponseWriter, r *http.Request) {
-
-	Artists := data.Compile()
+	// Compile the artists in a separate goroutine to avoid blocking the main thread
+	ArtistsCh := make(chan []data.Artist)
+	go func() {
+		ArtistsCh <- data.Compile()
+	}()
 
 	switch {
 	case strings.HasPrefix(r.URL.Path, "/artist/") && isNumber(r.URL.Path[8:]):
@@ -31,6 +34,8 @@ func StartPage(w http.ResponseWriter, r *http.Request) {
 			httpError(w, r, http.StatusInternalServerError)
 			return
 		}
+		// Receive the artists from the channel
+		Artists := <-ArtistsCh
 		err = tmpl.ExecuteTemplate(w, "artists.html", Artists[tools.Atoi(r.URL.Path[8:])-1])
 		if err != nil {
 			httpError(w, r, http.StatusInternalServerError)
@@ -42,6 +47,8 @@ func StartPage(w http.ResponseWriter, r *http.Request) {
 			httpError(w, r, http.StatusInternalServerError)
 			return
 		}
+		// Receive the artists from the channel
+		Artists := <-ArtistsCh
 		err = tmpl.ExecuteTemplate(w, "useful.html", Artists)
 		if err != nil {
 			httpError(w, r, http.StatusInternalServerError)
@@ -53,6 +60,8 @@ func StartPage(w http.ResponseWriter, r *http.Request) {
 			httpError(w, r, http.StatusInternalServerError)
 			return
 		}
+		// Receive the artists from the channel
+		Artists := <-ArtistsCh
 		err = tmpl.ExecuteTemplate(w, "index.html", Artists)
 		if err != nil {
 			httpError(w, r, http.StatusInternalServerError)
