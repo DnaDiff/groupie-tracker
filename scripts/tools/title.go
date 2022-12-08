@@ -14,8 +14,11 @@ func Title(s string) string {
 		}
 	}
 	// Usa -> USA
-	if strings.Contains(string(chars), "Usa") {
-		chars = []rune(strings.ReplaceAll(string(chars), "Usa", "USA"))
+	abbreviations := []string{"Usa", "Uk"}
+	for _, e := range abbreviations {
+		if strings.Contains(string(chars), e) {
+			chars = []rune(strings.ReplaceAll(string(chars), e, strings.ToUpper(e)))
+		}
 	}
 
 	return string(chars)
