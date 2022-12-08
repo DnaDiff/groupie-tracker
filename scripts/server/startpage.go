@@ -36,6 +36,17 @@ func StartPage(w http.ResponseWriter, r *http.Request) {
 			httpError(w, r, http.StatusInternalServerError)
 			return
 		}
+	case r.URL.Path == "/useless":
+		tmpl, err := template.ParseFiles("templates/useless.html")
+		if err != nil {
+			httpError(w, r, http.StatusInternalServerError)
+			return
+		}
+		err = tmpl.ExecuteTemplate(w, "useless.html", Artists)
+		if err != nil {
+			httpError(w, r, http.StatusInternalServerError)
+			return
+		}
 	case r.URL.Path == "/":
 		tmpl, err := template.ParseFiles("templates/index.html")
 		if err != nil {
