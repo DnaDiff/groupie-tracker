@@ -7,10 +7,10 @@
 }
 
 .artist {
-  width: 25.0rem;
+  width: 25rem;
   display: inline-block;
   text-align: center;
-  padding: 1.0rem;
+  padding: 1rem;
   margin: auto;
 }
 
@@ -35,6 +35,10 @@
 }
 .all {
   display: inline-block;
+}
+
+.name {
+  text-shadow: 0.2rem 0.2rem 0.2rem #cb22c3;
 }
 
 body {
