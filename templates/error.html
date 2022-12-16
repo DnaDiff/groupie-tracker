@@ -16,15 +16,11 @@
     <h1 class="header">
       &#129313; Are you trying to break our website? &#129313;
     </h1>
-    <p class="error">Error {{.Code}}: {{.Message}}</p>
-    <a class="main-page" href="https://youtu.be/sCNrK-n68CM?t=25"
-      >Go back to "main page"</a
-    >
-    <script>
-      const url = location.protocol + "//" + location.host;
-      document.write(
-        '<a class="back" href="' + url + '">Go to main page for real bro</a>'
-      );
-    </script>
+    <div>
+      <p class="error">Error {{.Code}}: {{.Message}}</p>
+      <a class="nice" href="/" style="text-decoration: none">
+        <button class="button name" type="button">Return to main page</button>
+      </a>
+    </div>
   </body>
 </html>
